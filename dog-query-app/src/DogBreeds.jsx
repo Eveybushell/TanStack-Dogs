@@ -1,6 +1,9 @@
 import {useQuery} from '@tanstack/react-query';
+import BreedDetails from './BreedDetails'
+import { useState } from 'react';
 
 export default function DogBreeds({ onSelectBreed }) {
+    const [breedId, setBreedId] = useState(null)
     const {isPending, isError, data, error} = useQuery({
         queryKey: ['breeds'],
         queryFn: () => fetch('https://dogapi.dog/api/v2/breeds')
@@ -17,9 +20,16 @@ export default function DogBreeds({ onSelectBreed }) {
 
     return (
         <div>
+            <h1>Dog Breeds</h1>
             <ul>
                 {data.data.map((breed) => (
-                    <li onClick={() => onSelectBreed(breed.id)} key={breed.id}>{breed.attributes.name}</li>
+                    <li onClick={() => setBreedId(breed.id)} key={breed.id}>{breed.attributes.name}
+                        {breedId === breed.id && (
+                            <div>
+                            <BreedDetails id={breed.id} />
+                            </div>
+                        )}
+                    </li>
                 ))}
             </ul>
         </div>

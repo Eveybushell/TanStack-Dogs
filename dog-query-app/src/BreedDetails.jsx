@@ -16,7 +16,7 @@ export default function BreedDetails({ id }) {
     }
 
     return (
-        <div>
+        <>
             <ul>
                 <li>
                     {data.data.attributes.name}
@@ -27,6 +27,6 @@ export default function BreedDetails({ id }) {
 
                 </li>
             </ul>
-        </div>
+        </>
     );
 }

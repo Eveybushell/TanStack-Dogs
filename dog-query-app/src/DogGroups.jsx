@@ -17,6 +17,7 @@ export default function DogGroups() {
 
     return (
         <div>
+            <h1>Dog Groups</h1>
             <ul>
                 {data.data.map((group) => (
                     <li key={group.id}>{group.attributes.name}</li>
